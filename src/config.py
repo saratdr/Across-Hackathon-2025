@@ -17,4 +17,6 @@ CSV_PATHS = {
     "minilm" : join(DATA_DIR, 'arxiv_minilm_embeddings.csv')
 }
 
+TOKENIZED_CSV_PATH = join(DATA_DIR, 'arxiv_tokenized_balanced.csv')
+
 MODELS = ["scibert", "specter", "minilm"]

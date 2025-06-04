@@ -9,12 +9,12 @@ class Recommender:
     def query(self, text, top_n=5):
         match = self.df[self.df['title'].str.contains(text, case=False, na=False)]
         if not match.empty:
-            idx = match.index[0]
+            idx = match.index[0]    
             query_embedding = self.embeddings[idx].reshape(1, -1)
             similarities = cosine_similarity(query_embedding, self.embeddings).flatten()
             top_indices = similarities.argsort()[-top_n:][::-1]
             results = self.df.iloc[top_indices].copy()
             results['similarity'] = similarities[top_indices]
-            return results[['id', 'title', 'similarity']]
+            return results[['id', 'title', 'authors', 'abstract', 'categories', 'main_category', 'similarity']]
         else:
             raise ValueError(f"No papers found with title containing '{text}'.")

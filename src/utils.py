@@ -20,7 +20,7 @@ def load_embedding(model):
         raise ValueError(f"Model {model} not recognized. Available models: {config.MODELS}")
     
     try:
-        data = pd.read_csv(config.CSV_PATHS[model])
+        data = pd.read_csv(config.TOKENIZED_CSV_PATH)
         embeddings = np.load(config.EMBEDDING_PATHS[model])
         return data, embeddings
     except Exception as e:
