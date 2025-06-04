@@ -19,7 +19,7 @@ document.getElementById('searchForm').addEventListener('submit', async function(
         const data = await response.json();
         if (data.papers && data.papers.length > 0) {
             resultsDiv.innerHTML = '<ul>' + data.papers.map(
-                paper => `<li><strong>${paper.title}</strong><br>${paper.authors}<br>${paper.abstract}</li>`
+                paper => `<li><strong>${paper.title}</strong><br>${paper.authors}<br>${paper.abstract}<br>${paper.pdf_url}</li>`
             ).join('') + '</ul>';
         } else {
             resultsDiv.innerHTML = 'No papers found.';
