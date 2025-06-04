@@ -1,0 +1,9 @@
+arxiv_tokenized_balanced.csv filter=lfs diff=lfs merge=lfs -text
+arxiv_dataset.csv filter=lfs diff=lfs merge=lfs -text
+arxiv_minilm_embeddings.csv filter=lfs diff=lfs merge=lfs -text
+arxiv_scibert_embeddings.csv filter=lfs diff=lfs merge=lfs -text
+arxiv_specter_embeddings.csv filter=lfs diff=lfs merge=lfs -text
+arxiv_specter_embeddings.npy filter=lfs diff=lfs merge=lfs -text
+arxiv_minilm_embeddings.npy filter=lfs diff=lfs merge=lfs -text
+arxiv_scibert_embeddings.npy filter=lfs diff=lfs merge=lfs -text
+arxiv_tokenized_balanced.parquet filter=lfs diff=lfs merge=lfs -text
