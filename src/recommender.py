@@ -15,6 +15,6 @@ class Recommender:
             top_indices = similarities.argsort()[-top_n:][::-1]
             results = self.df.iloc[top_indices].copy()
             results['similarity'] = similarities[top_indices]
-            return results[['id', 'title', 'authors', 'abstract', 'categories', 'main_category', 'similarity']]
+            return results[['id', 'title', 'authors', 'abstract', 'categories', 'main_category', 'similarity']].to_dict(orient='records')
         else:
             raise ValueError(f"No papers found with title containing '{text}'.")
