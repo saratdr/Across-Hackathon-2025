@@ -33,18 +33,7 @@ def recommend():
         }
     ]
 
-    rec_results = recommender.query(query)
-    ids_papers = rec_results["id"].values.tolist()
-    names_papers = rec_results["title"].values.tolist()
-    papers = [
-        {
-            "title": name,
-            "authors": "",
-            "abstract": "",
-            "pdf_url": utils.get_pdf_url(ids_papers[p_idx])
-        }
-        for p_idx, name in enumerate(names_papers)
-    ]   
+    papers = recommender.query(query)
     return jsonify({"papers": papers})
 
 if __name__ == '__main__':
