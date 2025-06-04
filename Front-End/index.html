@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Paper Analyzer</title>
-    <link rel="stylesheet" href="{{ url_for('Front-End', filename='style.css') }}">
-    <script src ="{{ url_for('Front-End', filename='script.js') }}"></script>
-
+    <title>Scientific Paper Recommender</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h1>Scientific Paper Recommender</h1>
+    <form id="searchForm">
+        <input type="text" id="queryInput" placeholder="Enter keywords or paper title" required>
+        <button type="submit">Search</button>
+    </form>
+    <button id="fantasticBtn" type="button">I feel fantastic</button>
+    <div id="fantasticImage"></div>
+    <div id="results"></div>
+    <script src="script.js"></script>
 </body>
 </html>
