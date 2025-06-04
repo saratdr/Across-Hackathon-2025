@@ -37,27 +37,11 @@ document.getElementById('searchForm').addEventListener('submit', async function(
                             </tr>
                         </thead>
                         <tbody>
-                            ${data.papers.map((paper, idx) => {
-                                const words = paper.abstract.split(/\s+/);
-                                const shortAbstract = words.length > 200 ? words.slice(0, 200).join(' ') + '...' : paper.abstract;
-                                const needsDropdown = words.length > 200;
-                                return `
+                            ${data.papers.map((paper) => `
                                 <tr>
                                     <td><strong>${paper.title}</strong></td>
                                     <td>${paper.authors}</td>
-                                    <td style="font-size:0.95em;">
-                                        ${shortAbstract}
-                                        ${needsDropdown ? `
-                                            <a class="btn btn-link btn-sm p-0 ms-2" data-bs-toggle="collapse" href="#collapseAbstract${idx}" role="button" aria-expanded="false" aria-controls="collapseAbstract${idx}">
-                                                Read more
-                                            </a>
-                                            <div class="collapse mt-2" id="collapseAbstract${idx}">
-                                                <div class="card card-body p-2 bg-light border">
-                                                    ${paper.abstract}
-                                                </div>
-                                            </div>
-                                        ` : ''}
-                                    </td>
+                                    <td style="font-size:0.95em;">${paper.abstract}</td>
                                     <td>
                                         ${paper.pdf_url ? `<a href="${paper.pdf_url}" target="_blank" class="btn btn-outline-primary btn-sm">View PDF</a>` : '<span class="text-muted">N/A</span>'}
                                     </td>
@@ -67,8 +51,7 @@ document.getElementById('searchForm').addEventListener('submit', async function(
                                         </button>
                                     </td>
                                 </tr>
-                                `;
-                            }).join('')}
+                            `).join('')}
                         </tbody>
                     </table>
                 </div>
