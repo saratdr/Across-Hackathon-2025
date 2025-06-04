@@ -34,6 +34,8 @@ def recommend():
     ]
 
     papers = recommender.query(query)
+    for paper in papers:
+        paper["pdf_url"] = utils.get_pdf_url(paper["id"])
     return jsonify({"papers": papers})
 
 if __name__ == '__main__':

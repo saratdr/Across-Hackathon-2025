@@ -37,13 +37,18 @@ document.getElementById('searchForm').addEventListener('submit', async function(
                             </tr>
                         </thead>
                         <tbody>
-                            ${data.papers.map((paper) => `
+                            ${data.papers.map((paper, idx) => `
                                 <tr>
                                     <td><strong>${paper.title}</strong></td>
                                     <td>${paper.authors}</td>
-                                    <td style="font-size:0.95em;">${paper.abstract}</td>
+                                    <td style="font-size:0.95em;">
+                                        <button class="btn btn-outline-info btn-sm show-abstract-btn" data-idx="${idx}">Show abstract</button>
+                                        <div class="abstract-content mt-2 d-none" id="abstract-${idx}">
+                                            <div class="card card-body p-2 bg-light border">${paper.abstract}</div>
+                                        </div>
+                                    </td>
                                     <td>
-                                        ${paper.pdf_url ? `<a href="${paper.pdf_url}" target="_blank" class="btn btn-outline-primary btn-sm">View PDF</a>` : '<span class="text-muted">N/A</span>'}
+                                        <button class="btn btn-outline-primary btn-sm" onclick="window.open('${paper.pdf_url}', '_blank')">View PDF</button>
                                     </td>
                                     <td>
                                         <button class="btn btn-outline-success btn-sm" data-title="${paper.title}" title="Show similar papers">
@@ -91,9 +96,21 @@ document.getElementById('searchForm').addEventListener('submit', async function(
     }
 });
 
-// Add button for every paper that gets displayed. Button should have access to the paper's title. If you press the button the search query gets reloaded and displays the similar papers of this paper.
+// Toggle abstract display
 document.getElementById('results').addEventListener('click', function(e) {
-    if (e.target.closest('button[data-title]')) {
+    if (e.target.classList.contains('show-abstract-btn')) {
+        const idx = e.target.getAttribute('data-idx');
+        const abstractDiv = document.getElementById(`abstract-${idx}`);
+        if (abstractDiv.classList.contains('d-none')) {
+            abstractDiv.classList.remove('d-none');
+            e.target.textContent = 'Hide abstract';
+        } else {
+            abstractDiv.classList.add('d-none');
+            e.target.textContent = 'Show abstract';
+        }
+    }
+    // Similar papers button
+    if (e.target.closest('button[data-title]') && !e.target.classList.contains('show-abstract-btn')) {
         const paperTitle = e.target.closest('button[data-title]').getAttribute('data-title');
         document.getElementById('queryInput').value = paperTitle;
         document.getElementById('searchForm').dispatchEvent(new Event('submit'));
