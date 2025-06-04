@@ -3,19 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Scientific Paper Recommender</title>
+    <title>ALIS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Amazing Science App Thing </h1> 
-    <form id="searchForm">
-        <input type="text" id="queryInput" placeholder="Enter keywords or paper title" required>
-        <button type="submit">Search</button>
-    </form>
-    <button id="fantasticBtn" type="button">I feel fantastic</button>
-    <div id="fantasticImage"></div>
-    <div id="results"></div>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4 text-primary">ALIS – Algorithm-based Literature research In STEM</h1>
+        <!--Input field for Keyword Search-->
+        <form id="searchForm" class="row g-3 align-items-center mb-4">
+            <div class="col-auto">
+                <label for="queryInput" class="col-form-label">Include Keywords:</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="queryInput" class="form-control" placeholder="Enter keywords or paper title" required>
+            </div>
+            <div class="col-auto">
+                <label for="excludeInput" class="col-form-label">Exclude Keywords:</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="excludeInput" class="form-control" placeholder="Enter keywords to exclude">
+            </div>
+            <!--Input field for Field of Research-->
+            <div class="col-auto">
+                <label for="fieldInput" class="col-form-label">Field of Research:</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="fieldInput" class="form-control" placeholder="e.g. Physics, Biology">
+            </div>
+            <!--Search button-->
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+        <button id="fantasticBtn" type="button" class="btn btn-success mb-3">I feel fantastic</button>
+        <div id="fantasticImage" class="mb-3"></div>
+        <div id="results"></div>
+        <!-- Recommendations -> You might also like... -->
+        <div id="recommendations" class="mt-3"></div>
+    </div>
     <!-- Footer with GitHub link -->
     <div id="github-btn" style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;">
         <a href="https://github.com/saratdr/Across-Hackathon-2025" target="_blank" rel="noopener" style="display: inline-block; background: #24292e; border-radius: 50%; padding: 10px;">
