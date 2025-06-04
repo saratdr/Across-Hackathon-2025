@@ -20,3 +20,5 @@ CSV_PATHS = {
 TOKENIZED_CSV_PATH = join(DATA_DIR, 'arxiv_tokenized_balanced.csv')
 
 MODELS = ["scibert", "specter", "minilm"]
+
+ARXIV_MAIN_CATEGORIES = ["Computer Science (cs)", "Economics (econ)", "Electrical Engineering and Systems Science (eess)", "Mathematics (math)", "Physics (physics)", "Quantitative Biology (q-bio)", "Quantitative Finance (q-fin)", "Statistics (stat)"]
