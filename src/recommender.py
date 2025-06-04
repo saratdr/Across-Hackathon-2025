@@ -7,7 +7,7 @@ class Recommender:
         self.model = model
 
     def query(self, text, top_n=5):
-        match = self.df[self.df['title'].str.contains(text, case=False, na=False)]
+        match = self.df[self.df['title'].str.contains(text, case=False, na=False)] or self.df[self.df['abstract'].str.contains(text, case=False, na=False)]
         if not match.empty:
             idx = match.index[0]    
             query_embedding = self.embeddings[idx].reshape(1, -1)
@@ -18,3 +18,5 @@ class Recommender:
             return results[['id', 'title', 'authors', 'abstract', 'categories', 'main_category', 'similarity']].to_dict(orient='records')
         else:
             raise ValueError(f"No papers found with title containing '{text}'.")
+        
+   # def get_by_category(self, category, top_n=5):
