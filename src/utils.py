@@ -2,6 +2,23 @@ import pandas as pd
 import numpy as np
 import src.config as config
 
+def clean_text_column(series):
+    """
+    Clean a pandas Series containing text data by removing newlines and normalizing whitespace.
+    Args:
+        series (pd.Series): The Series to clean.
+    Returns:
+        pd.Series: The cleaned Series with newlines replaced by spaces and extra whitespace normalized.
+    """
+
+    return (
+        series.astype(str)
+        .str.replace(r"\\n", " ", regex=True)  # replace literal '\n' (escaped in CSV)
+        .str.replace(r"\n", " ", regex=True)   # replace real newlines (if any)
+        .str.replace(r"\s+", " ", regex=True)  # normalize whitespace
+        .str.strip()
+    )
+
 def load_embedding(model):
     """
     Load the precomputed embeddings and metadata for a specified model.
@@ -21,6 +38,7 @@ def load_embedding(model):
     
     try:
         data = pd.read_csv(config.TOKENIZED_CSV_PATH)
+        data['title'] = clean_text_column(data['title'])
         embeddings = np.load(config.EMBEDDING_PATHS[model])
         return data, embeddings
     except Exception as e:
